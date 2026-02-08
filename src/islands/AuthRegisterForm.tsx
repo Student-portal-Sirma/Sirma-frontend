@@ -11,9 +11,9 @@ export default function AuthRegisterForm(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setError(null);
         setLoading(true);
@@ -25,7 +25,7 @@ export default function AuthRegisterForm(){
             alert("Registration successful (demo)");
             
         } catch (err) {
-            setError(err.message);
+            setError(err instanceof Error ? err.message : "An error occurred");
         } finally {
             setLoading(false);
         }
@@ -43,7 +43,7 @@ export default function AuthRegisterForm(){
                         <Label htmlFor="name">Name</Label>
                         <Input
                             id="name"
-                            placeholder="John Doe"
+                            placeholder="your name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             />
@@ -53,7 +53,7 @@ export default function AuthRegisterForm(){
                         <Label htmlFor="email">Email</Label>
                         <Input
                             id="email"
-                            placeholder="you@example.com"
+                            placeholder="your_email@example.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             />
