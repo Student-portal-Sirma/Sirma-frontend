@@ -19,7 +19,10 @@ export default function AuthLoginForm(){
         setLoading(true);
 
         try {
-            const result = await login({email, password});
+            const result = await login(email, password);
+            localStorage.setItem("jwt", result.jwt);
+            window.location.href = "/courses";
+
             console.log("Logged in:", result);
             
 
