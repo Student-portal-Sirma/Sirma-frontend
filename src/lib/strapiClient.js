@@ -47,6 +47,6 @@ export function register(username, email, password) {
 }
 
 // Courses
-export function getCourses() {
-  return strapiFetch("/api/courses?populate=thumbnail");
+export function getCourses(query = "") {
+  return strapiFetch(`/api/courses${query}`);
 }
