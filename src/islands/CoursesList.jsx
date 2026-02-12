@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 function normalizeCourse(item) {
   
-  const a = item?.attributes || {};
+  const a = item || {};
   const thumbUrl =
     a?.thumbnail?.data?.attributes?.url
       ? `${import.meta.env.PUBLIC_STRAPI_URL}${a.thumbnail.data.attributes.url}`
