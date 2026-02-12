@@ -35,10 +35,12 @@ export default function CoursesList() {
     setLoading(true);
 
     try {
-      const res = await getCourses(); 
+      const res = await getCourses();
+      console.log('Strapi response:', res);
       const normalized = Array.isArray(res?.data)
         ? res.data.map(normalizeCourse)
         : [];
+      console.log('Normalized courses:', normalized);
       setCourses(normalized);
     } catch (err) {
       setError(err?.message || "Failed to load courses");
