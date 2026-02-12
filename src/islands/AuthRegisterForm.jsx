@@ -19,10 +19,11 @@ export default function AuthRegisterForm(){
         setLoading(true);
 
         try {
-            const result = await register(name, email, password);
-            localStorage.setItem("jwt", result.jwt);
+            const res = await register(name, email, password); 
+            localStorage.setItem("jwt", res.jwt);
+            localStorage.setItem("user", JSON.stringify(res.user));
             window.location.href = "/dashboard";
-            console.log("Registered:", result);
+            console.log("Registered:", res);
             
             alert("Registration successful (demo)");
             
