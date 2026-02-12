@@ -29,10 +29,11 @@ export async function strapiFetch(path, { method = "GET", body, auth = false } =
 }
 
 // Auth
-export function login(email, password) {
+
+export function login(identifier, password) {
   return strapiFetch("/api/auth/local", {
     method: "POST",
-    body: { email, password },
+    body: { identifier, password },
   });
 }
 

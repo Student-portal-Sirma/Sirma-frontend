@@ -1,4 +1,4 @@
-import { register } from "@/lib/api";
+import { register } from "@/lib/strapiClient";
 import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
