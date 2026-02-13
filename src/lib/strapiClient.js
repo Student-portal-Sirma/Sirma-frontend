@@ -2,6 +2,8 @@
 const BASE_URL = import.meta.env.PUBLIC_STRAPI_URL;
 
 function getToken() {
+  if (typeof window === "undefined") return null;
+
   return localStorage.getItem("jwt");
 }
 
@@ -30,10 +32,11 @@ export async function strapiFetch(path, { method = "GET", body, auth = false } =
 }
 
 // Auth
-export function login(email, password) {
+
+export function login(identifier, password) {
   return strapiFetch("/api/auth/local", {
     method: "POST",
-    body: { email, password },
+    body: { identifier, password },
   });
 }
 
@@ -44,7 +47,6 @@ export function register(username, email, password) {
   });
 }
 
-// Courses
-export function getCourses() {
-  return strapiFetch("/api/courses");
+export function getCourses(query = "") {
+  return strapiFetch(`/api/courses${query}`);
 }

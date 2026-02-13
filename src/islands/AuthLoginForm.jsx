@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { useState } from "react";
-import { login } from "@/lib/api";
+import { login } from "@/lib/strapiClient";
+
 
 export default function AuthLoginForm(){
     const [email, setEmail] = useState("");
@@ -19,11 +20,12 @@ export default function AuthLoginForm(){
         setLoading(true);
 
         try {
-            const result = await login(email, password);
-            localStorage.setItem("jwt", result.jwt);
-            window.location.href = "/courses";
+            const res = await login(email, password); 
+            localStorage.setItem("jwt", res.jwt);
+            localStorage.setItem("user", JSON.stringify(res.user));
+            window.location.href = "/dashboard";
 
-            console.log("Logged in:", result);
+            console.log("Logged in:", res);
             
 
             alert("Login successful (demo)");
