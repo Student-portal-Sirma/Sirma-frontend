@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 function normalizeCourse(item) {
   
-  const a = item?.attributes || {};
+  const a = item || {};
   const thumbUrl =
     a?.thumbnail?.data?.attributes?.url
       ? `${import.meta.env.PUBLIC_STRAPI_URL}${a.thumbnail.data.attributes.url}`
@@ -35,10 +35,12 @@ export default function CoursesList() {
     setLoading(true);
 
     try {
-      const res = await getCourses(); 
+      const res = await getCourses();
+      console.log('Strapi response:', res);
       const normalized = Array.isArray(res?.data)
         ? res.data.map(normalizeCourse)
         : [];
+      console.log('Normalized courses:', normalized);
       setCourses(normalized);
     } catch (err) {
       setError(err?.message || "Failed to load courses");
