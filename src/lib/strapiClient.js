@@ -49,3 +49,4 @@ export function register(username, email, password) {
 
 export function getCourses(query = "") {
   return strapiFetch(`/api/courses${query}`);
+}
