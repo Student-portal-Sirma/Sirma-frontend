@@ -20,6 +20,7 @@ export async function strapiFetch(path, { method = "GET", body, auth = false } =
     body: body ? JSON.stringify(body) : undefined,
   });
 
+  
   const data = await res.json().catch(() => null);
 
   if (!res.ok) {
@@ -46,7 +47,5 @@ export function register(username, email, password) {
   });
 }
 
-// Courses
 export function getCourses(query = "") {
   return strapiFetch(`/api/courses${query}`);
-}
